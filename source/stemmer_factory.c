@@ -11,6 +11,7 @@
 #include "stemmer_otago_v2.h"
 #include "stemmer_factory.h"
 #include "stemmer_snowball.h"
+#include "stemmer_wikt.h"
 #include "stemmer_term_similarity_weighted.h"
 #include "stemmer_term_similarity_threshold.h"
 #include "phonetic_iterator_double_metaphone.h"
@@ -32,6 +33,7 @@ switch (which_stemmer)
 	case OTAGO:			           stemmer = new ANT_stemmer_otago(engine);		break;
 	case OTAGO_V2:		           stemmer = new ANT_stemmer_otago_v2(engine);		break;
 	case KROVETZ:		           stemmer = new ANT_stemmer_krovetz(engine);		break;
+	case WIKT:					   stemmer = new ANT_stemmer_wikt(engine);			break;
 #ifdef ANT_HAS_PAICE_HUSK
 	case PAICE_HUSK:	           stemmer = new ANT_stemmer_paice_husk(engine);	break;
 #endif
@@ -91,6 +93,7 @@ switch (which_stemmer)
 	case OTAGO:		               stemmer = new ANT_stem_otago;			break;
 	case OTAGO_V2:	               stemmer = new ANT_stem_otago_v2;		break;
 	case KROVETZ:	       	       stemmer = new ANT_stem_krovetz;			break;
+	case WIKT:					   stemmer = new ANT_stem_wikt;				break;
 #ifdef ANT_HAS_PAICE_HUSK
 	case PAICE_HUSK:	           stemmer = new ANT_stem_paice_husk;		break;
 #endif

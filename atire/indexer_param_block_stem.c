@@ -64,6 +64,7 @@ puts("  O             English Otago stemming version 2");
 puts("  p             English Porter stemming (ATIRE's version of Porter v1)");
 puts("  s             English S-Stripping stemming");
 puts("  S             Soundex phonetics");
+puts("  w			  English Wiktionary stemming");
 #ifdef ANT_HAS_SNOWBALL
 	puts("  X[abcDdEeFfg2hiklnpRrSst] Stemming using the Snowball libraries");
 	puts("   a Armenian");
@@ -122,6 +123,7 @@ switch (*which)
 	case 's' : stemmer = ANT_stemmer_factory::S_STRIPPER; break;
 	case 'D' : stemmer = ANT_stemmer_factory::DOUBLE_METAPHONE;       break;
 	case 'S' : stemmer = ANT_stemmer_factory::SOUNDEX; break;
+	case 'w' : stemmer = ANT_stemmer_factory::WIKT;		 break;
 	case 'X' :
 		if (*(which + 2) != '\0')
 			exit(printf("Unknown stemmer: '-%c'\n", *which));
