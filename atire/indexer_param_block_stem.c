@@ -64,7 +64,7 @@ puts("  O             English Otago stemming version 2");
 puts("  p             English Porter stemming (ATIRE's version of Porter v1)");
 puts("  s             English S-Stripping stemming");
 puts("  S             Soundex phonetics");
-puts("  w			  English Wiktionary stemming");
+puts("  w             English Wiktionary stemming");
 #ifdef ANT_HAS_SNOWBALL
 	puts("  X[abcDdEeFfg2hiklnpRrSst] Stemming using the Snowball libraries");
 	puts("   a Armenian");
