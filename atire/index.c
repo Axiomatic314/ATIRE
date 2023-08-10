@@ -492,14 +492,16 @@ for (param = first_param; param < argc; param++)
 	stats.add_disk_input_time(stats.stop_timer(now));
 #endif
 
+	int n = 2;
+	int count = 0;
 	while (current_file != NULL)
 		{
 		/*
 		 	 It could be an empty file without any text (content)
 		 */
-		if (current_file->file != NULL)
+		if (current_file->file != NULL && ++count != n)
 			{
-//puts(current_file->filename);
+// puts(current_file->filename);
 			/*
 				How much data do we have?
 			*/
@@ -578,6 +580,10 @@ for (param = first_param; param < argc; param++)
 				}
 			delete [] current_file->file;
 			delete [] current_file->filename;
+			}
+		else if (count == n)
+			{
+			count = 0;	
 			}
 
 		/*
