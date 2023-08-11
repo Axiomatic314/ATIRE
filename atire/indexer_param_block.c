@@ -66,6 +66,7 @@ doc_tag = "DOC";
 docno_tag = "DOCNO";
 
 indexn = 1;
+max_doc_length = -1;
 }
 
 /*
@@ -123,6 +124,7 @@ puts("-imime          Filter out mime types that do not begin with text");
 puts("-ifilter[ie] <fn> Either [i]nclude or [e]xclude docids that are in file <fn>");
 puts("");
 puts("-indexn:<n>     Index only each <n>th document from the indexable files");
+puts("-trunc:<n>      Truncate documents at <n> words");
 puts("");
 
 puts("OUPUT FILE HANDLING");
@@ -491,8 +493,10 @@ for (param = 1; param < argc; param++)
 			}
 		else if (strncmp(command, "iscrub:", 7) == 0)
 			this->scrub(command + 7);
-		else if (strncmp(command, "indexn:", 7) == 0) //todo: make sure this works...
+		else if (strncmp(command, "indexn:", 7) == 0)
 			indexn = atoi(command + 7);
+		else if (strncmp(command, "trunc:", 6) == 0)
+			max_doc_length = atol(command + 6);
 		else if (*command == 'S')
 			segment(command + 1);
 		else if (strcmp(command, "?") == 0)

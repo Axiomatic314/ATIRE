@@ -20,6 +20,11 @@
 */
 long ANT_index_document::index_document(ANT_memory_indexer *indexer, ANT_stem *stemmer, long segmentation, ANT_readability_factory *readability, long long doc, unsigned char *file)
 {
+	return ANT_index_document::index_document(indexer, stemmer, segmentation, readability, doc, file, -1);
+}
+
+long ANT_index_document::index_document(ANT_memory_indexer *indexer, ANT_stem *stemmer, long segmentation, ANT_readability_factory *readability, long long doc, unsigned char *file, long max_doc_length)
+{
 char term[MAX_TERM_LENGTH + 1], token_stem_internals[MAX_TERM_LENGTH + 1];
 ANT_parser_token *token;
 long terms_in_document, length_of_token, is_previous_token_chinese;
@@ -54,6 +59,8 @@ while ((token = readability->get_next_token()) != NULL)
 	*/
 	if (token->length() > MAX_TERM_LENGTH)
 		continue;
+	if (max_doc_length > -1 && terms_in_document > max_doc_length)
+		break;
 	switch (token->type)
 		{
 		case TT_WORD:
@@ -140,7 +147,7 @@ if (terms_in_document != 0)
 	/*
 		Set the true length
 	*/
-//printf("set length to %ld\n", terms_in_document);
+// printf("set length to %ld\n", terms_in_document);
 	indexer->set_document_length(doc, terms_in_document);
 	readability->index(indexer, doc);
 	}

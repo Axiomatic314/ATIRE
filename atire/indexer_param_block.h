@@ -54,7 +54,8 @@ public:
 	long quantization;					// whether or not we should quantize
 	long quantization_automatic;		// whether or not we should calculate the bits to quantize into
 
-	int indexn;								// index only each nth document
+	int indexn;							// index only each nth document
+	long max_doc_length;					// truncate documents past this length
 
 protected:
 	void document_compression(char *scheme);

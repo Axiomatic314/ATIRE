@@ -25,6 +25,7 @@ public:
 
 	virtual long index_document(ANT_memory_indexer *indexer, ANT_stem *stemmer, long segmentation, ANT_readability_factory *readability, long long doc_id, unsigned char *file);
 	virtual long index_document(ANT_memory_indexer *indexer, ANT_stem *stemmer, long segmentation, ANT_readability_factory *readability, long long doc_id, char *file) { return index_document(indexer, stemmer, segmentation, readability, doc_id, (unsigned char *)file); }
+	virtual long index_document(ANT_memory_indexer *indexer, ANT_stem *stemmer, long segmentation, ANT_readability_factory *readability, long long doc_id, unsigned char *file, long max_doc_length);
 } ;
 
 #endif /* INDEX_DOCUMENT_H_ */

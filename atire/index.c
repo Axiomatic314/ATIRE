@@ -492,8 +492,7 @@ for (param = first_param; param < argc; param++)
 	stats.add_disk_input_time(stats.stop_timer(now));
 #endif
 
-	// int n = 2;
-	printf("%i\n",param_block.indexn);
+	int max_length = 0;
 	int count = 0;
 	while (current_file != NULL)
 		{
@@ -528,8 +527,8 @@ for (param = first_param; param < argc; param++)
 			index->add_indexed_document(current_file->index, doc);
 			delete current_file->index;
 			terms_in_document = current_file->terms;
-#else
-			terms_in_document = document_indexer->index_document(index, stemmer, param_block.segmentation, readability, doc, current_file->file);
+#else		
+			terms_in_document = document_indexer->index_document(index, stemmer, param_block.segmentation, readability, doc, current_file->file);			
 #endif
 			stats.add_indexing_time(stats.stop_timer(now));
 
@@ -578,6 +577,9 @@ for (param = first_param; param < argc; param++)
 	//			puts(current_file->filename);
 				id_list.puts(strip_space_inplace(current_file->filename));
 #endif
+
+				if (terms_in_document > max_length)
+					max_length = terms_in_document;
 				}
 			delete [] current_file->file;
 			delete [] current_file->filename;
@@ -586,7 +588,6 @@ for (param = first_param; param < argc; param++)
 			{
 			count = 0;	
 			}
-
 		/*
 			Get the next file
 		*/
@@ -594,6 +595,8 @@ for (param = first_param; param < argc; param++)
 		current_file = disk->next(&file_object);
 		stats.add_disk_input_time(stats.stop_timer(now));
 		}
+
+printf("Longest document had %i terms.\n", max_length);
 
 #ifdef NEVER
 	if (files_that_match == 0)
