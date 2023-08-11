@@ -54,6 +54,8 @@ public:
 	long quantization;					// whether or not we should quantize
 	long quantization_automatic;		// whether or not we should calculate the bits to quantize into
 
+	int indexn;								// index only each nth document
+
 protected:
 	void document_compression(char *scheme);
 	void compression(char *schemes);

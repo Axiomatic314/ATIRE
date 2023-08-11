@@ -492,14 +492,15 @@ for (param = first_param; param < argc; param++)
 	stats.add_disk_input_time(stats.stop_timer(now));
 #endif
 
-	int n = 2;
+	// int n = 2;
+	printf("%i\n",param_block.indexn);
 	int count = 0;
 	while (current_file != NULL)
 		{
 		/*
 		 	 It could be an empty file without any text (content)
 		 */
-		if (current_file->file != NULL && ++count != n)
+		if (current_file->file != NULL && ++count == param_block.indexn)
 			{
 // puts(current_file->filename);
 			/*
@@ -581,7 +582,7 @@ for (param = first_param; param < argc; param++)
 			delete [] current_file->file;
 			delete [] current_file->filename;
 			}
-		else if (count == n)
+		if (count == param_block.indexn)
 			{
 			count = 0;	
 			}
