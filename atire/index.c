@@ -492,7 +492,7 @@ for (param = first_param; param < argc; param++)
 	stats.add_disk_input_time(stats.stop_timer(now));
 #endif
 
-	int max_length = 0;
+	// int max_length = 0;
 	int count = 0;
 	while (current_file != NULL)
 		{
@@ -578,8 +578,8 @@ for (param = first_param; param < argc; param++)
 				id_list.puts(strip_space_inplace(current_file->filename));
 #endif
 
-				if (terms_in_document > max_length)
-					max_length = terms_in_document;
+				// if (terms_in_document > max_length)
+				// 	max_length = terms_in_document;
 				}
 			delete [] current_file->file;
 			delete [] current_file->filename;
@@ -596,7 +596,7 @@ for (param = first_param; param < argc; param++)
 		stats.add_disk_input_time(stats.stop_timer(now));
 		}
 
-printf("Longest document had %i terms.\n", max_length);
+// printf("Longest document had %i terms.\n", max_length);
 
 #ifdef NEVER
 	if (files_that_match == 0)
