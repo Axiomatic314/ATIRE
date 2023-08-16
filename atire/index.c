@@ -499,7 +499,7 @@ for (param = first_param; param < argc; param++)
 		/*
 		 	 It could be an empty file without any text (content)
 		 */
-		if (current_file->file != NULL && ++count == param_block.indexn)
+		if (current_file->file != NULL && ((++count % param_block.indexn) == 0))
 			{
 // puts(current_file->filename);
 			/*
@@ -528,7 +528,7 @@ for (param = first_param; param < argc; param++)
 			delete current_file->index;
 			terms_in_document = current_file->terms;
 #else		
-			terms_in_document = document_indexer->index_document(index, stemmer, param_block.segmentation, readability, doc, current_file->file);			
+			terms_in_document = document_indexer->index_document(index, stemmer, param_block.segmentation, readability, doc, current_file->file, param_block.max_doc_length);			
 #endif
 			stats.add_indexing_time(stats.stop_timer(now));
 
@@ -583,10 +583,6 @@ for (param = first_param; param < argc; param++)
 				}
 			delete [] current_file->file;
 			delete [] current_file->filename;
-			}
-		if (count == param_block.indexn)
-			{
-			count = 0;	
 			}
 		/*
 			Get the next file

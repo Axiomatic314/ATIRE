@@ -18,11 +18,6 @@
 	ANT_INDEX_DOCUMENT::INDEX_DOCUMENT()
 	------------------------------------
 */
-long ANT_index_document::index_document(ANT_memory_indexer *indexer, ANT_stem *stemmer, long segmentation, ANT_readability_factory *readability, long long doc, unsigned char *file)
-{
-	return ANT_index_document::index_document(indexer, stemmer, segmentation, readability, doc, file, -1);
-}
-
 long ANT_index_document::index_document(ANT_memory_indexer *indexer, ANT_stem *stemmer, long segmentation, ANT_readability_factory *readability, long long doc, unsigned char *file, long max_doc_length)
 {
 char term[MAX_TERM_LENGTH + 1], token_stem_internals[MAX_TERM_LENGTH + 1];
@@ -59,7 +54,7 @@ while ((token = readability->get_next_token()) != NULL)
 	*/
 	if (token->length() > MAX_TERM_LENGTH)
 		continue;
-	if (max_doc_length > -1 && terms_in_document > max_doc_length)
+	if (max_doc_length > -1 && terms_in_document >= max_doc_length)
 		break;
 	switch (token->type)
 		{
