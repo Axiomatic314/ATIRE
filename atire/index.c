@@ -581,6 +581,10 @@ for (param = first_param; param < argc; param++)
 				// if (terms_in_document > max_length)
 				// 	max_length = terms_in_document;
 				}
+			}
+
+		if (current_file != NULL)
+			{
 			delete [] current_file->file;
 			delete [] current_file->filename;
 			}
