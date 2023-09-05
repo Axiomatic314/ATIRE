@@ -7,7 +7,7 @@
 #include "stem_wikt.h"
 
 ANT_stem_wikt::ANT_stem_wikt(){
-    std::string wordToStemFilePath = "wikt_stem_table.txt";
+    std::string wordToStemFilePath = "wikt_stem_2.txt";
     std::fstream wordToStemFile(wordToStemFilePath, std::fstream::in);
     if(!wordToStemFile.is_open()){
         fprintf(stderr, "Error opening file!\nNo stemming will be applied.\n");
