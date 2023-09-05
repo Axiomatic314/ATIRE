@@ -235,6 +235,7 @@ for (current_length = 0; current_length < documents; current_length++)
 	decompressed_integer = decompress_buffer[current_length] - 1;		// because the indexer and the search engine count from different numbers.
 	sum += decompressed_integer;
 	document_lengths[current_length] = decompressed_integer;
+	printf("%i\n", document_lengths[current_length]);
 	}
 mean_document_length = (double)sum / (double)documents;
 collection_length_in_terms = sum;
