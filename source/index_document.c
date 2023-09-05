@@ -30,8 +30,8 @@ char *previous_token_start;
 	Initialise
 */
 terms_in_document = 0;
-// int in_script_tag = 0;
-// int in_style_tag = 0;
+int in_script_tag = 0;
+int in_style_tag = 0;
 
 /*
 	Initialise the Chinese parser
@@ -127,31 +127,31 @@ while ((token = readability->get_next_token()) != NULL)
 			readability->handle_node(indexer->add_term(token->normalized_pair(), doc));			// indexable term
 			break;
 		case TT_TAG_OPEN:	
-			// if(strncmp("SCRIPT",token->normalized_pair()->string(),6) == 0)
-			// 	{
-			// 	in_script_tag = 1;
-			// 	break;
-			// 	}			
-			// if(strncmp("STYLE",token->normalized_pair()->string(),5) == 0)
-			// 	{
-			// 	in_style_tag = 1;
-			// 	break;
-			// 	}
+			if(strncmp("SCRIPT",token->normalized_pair()->string(),6) == 0)
+				{
+				in_script_tag = 1;
+				break;
+				}			
+			if(strncmp("STYLE",token->normalized_pair()->string(),5) == 0)
+				{
+				in_style_tag = 1;
+				break;
+				}
 			if ((stopword_mode & ANT_memory_index::PRUNE_TAGS) == 0)
 				readability->handle_node(indexer->add_term(token, doc));						// open tag
 			readability->handle_tag(token, TRUE);
 			break;
 		case TT_TAG_CLOSE:
-			// if(strncmp("SCRIPT",token->normalized_pair()->string(),6) == 0)
-			// 	{
-			// 	in_script_tag = 0;
-			// 	break;
-			// 	}			
-			// if(strncmp("STYLE",token->normalized_pair()->string(),5) == 0)
-			// 	{
-			// 	in_style_tag = 0;
-			// 	break;
-			// 	}
+			if(strncmp("SCRIPT",token->normalized_pair()->string(),6) == 0)
+				{
+				in_script_tag = 0;
+				break;
+				}			
+			if(strncmp("STYLE",token->normalized_pair()->string(),5) == 0)
+				{
+				in_style_tag = 0;
+				break;
+				}
 			readability->handle_tag(token, FALSE);
 			break;
 		case TT_PUNCTUATION:
