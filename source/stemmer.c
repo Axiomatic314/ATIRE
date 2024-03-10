@@ -19,7 +19,7 @@ for (term_to_check = from; term_to_check != NULL; term_to_check = ANT_btree_iter
 	stem(term_to_check, stemmed_index_term);
 	if (strcmp(stemmed_index_term, stemmed_search_term) == 0)
 		{
-		printf("D:%s->%s\n", term_to_check, stemmed_index_term);
+		//printf("D:%s->%s\n", term_to_check, stemmed_index_term);
 		return term_to_check;
 		}
 
@@ -36,8 +36,8 @@ return NULL;
 char *ANT_stemmer::first(char *term)
 {
 stemmed_search_term_length = stem(term, stemmed_search_term);
-if (strcmp(term, stemmed_search_term) != 0)
-	printf("Q:%s->%s\n", term, stemmed_search_term);
+//if (strcmp(term, stemmed_search_term) != 0)
+	//printf("Q:%s->%s\n", term, stemmed_search_term);
 strncpy(stemmed_search_term_head, stemmed_search_term, stemmed_search_term_length);
 stemmed_search_term_head[stemmed_search_term_length] = '\0';
 return get_next(ANT_btree_iterator::first(stemmed_search_term_head));
